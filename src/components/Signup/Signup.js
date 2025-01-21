@@ -15,7 +15,7 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/login", { name, password })
+      .post("https://amazon-backend-jxcn.onrender.com/login", { name, password })
       .then((res) => {
         console.log(res);
         navigate("/profile");

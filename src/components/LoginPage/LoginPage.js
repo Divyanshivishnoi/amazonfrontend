@@ -23,7 +23,7 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/signup", {
+      .post("https://amazon-backend-jxcn.onrender.com/signup", {
         username: formData.name,
         email: formData.email,
         password: formData.password,
