@@ -4,7 +4,9 @@ import amazonLogo from "../../assests/amazonLogo.png";
 import LanguageDropdown from "../languageDropdown/languageDropdown";
 import AccountDropdown from "../AccountDropdown/AccountDropdown";
 import { BsCart3 } from "react-icons/bs";
+import { useSelector } from "react-redux";
 const Navbar = () => {
+  const count = useSelector((state) => state.cart.cartItems.length);
   return (
     <div className="flex flex-col sm:flex-row justify-between items-center p-4 bg-black text-white space-y-4 sm:space-y-0 sticky top-0 z-50  ">
       <img
@@ -78,7 +80,7 @@ const Navbar = () => {
         <div className="relative">
           <BsCart3 size={24} />
           <span className="absolute -top-2 -right-3 bg-yellow-500 text-black rounded-full px-1 text-xs font-bold">
-            0
+            {count}
           </span>
         </div>
         <span className="text-sm font-bold">Cart</span>

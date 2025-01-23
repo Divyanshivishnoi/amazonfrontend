@@ -1,6 +1,24 @@
 import React from "react";
 import cartItems from "../cartProduct/cartProduct";
+import { useSelector, useDispatch } from "react-redux";
+import { decreaseItem, increaseItem, removeFromCart } from "../redux/cartSlice";
 const CartPage = () => {
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log(cartItems);
+  const dispatch = useDispatch();
+
+  const decrementQuantity = (id) => {
+    dispatch(decreaseItem(id));
+  };
+
+  const incrementQuantity = (item) => {
+    dispatch(increaseItem(item));
+  };
+
+  const removeItemFromCart=(id)=>{
+    dispatch(removeFromCart(id));
+  }
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       <h1 className="text-3xl font-bold mb-4">Shopping Cart</h1>
@@ -22,23 +40,23 @@ const CartPage = () => {
               <div className="flex-1 ml-4">
                 <h2 className="text-lg font-semibold">{item.name}</h2>
                 <p className="text-sm text-gray-500">{item.description}</p>
-                <p className="text-sm text-gray-600 mt-2">
-                  <strong>Size:</strong> {item.size}
-                </p>
-                <p className="text-sm text-gray-600">
-                  <strong>Color:</strong> {item.color}
-                </p>
                 <div className="flex items-center gap-2 mt-3">
-                  <button className="px-3 py-1 bg-gray-200 rounded text-gray-600">
+                  <button
+                    className="px-3 py-1 bg-gray-200 rounded text-gray-600"
+                    onClick={() => decrementQuantity(item.id)}
+                  >
                     -
                   </button>
                   <span>{item.quantity}</span>
-                  <button className="px-3 py-1 bg-gray-200 rounded text-gray-600">
+                  <button
+                    className="px-3 py-1 bg-gray-200 rounded text-gray-600"
+                    onClick={() => incrementQuantity(item.id)}
+                  >
                     +
                   </button>
                 </div>
                 <div className="flex items-center gap-4 mt-3 text-sm text-blue-600">
-                  <button>Delete</button>
+                  <button onClick={()=>removeItemFromCart(item.id)} className="text-blue text-sm hover:underline" >Delete</button>
                   <button>Save for later</button>
                   <button>See more like this</button>
                 </div>
@@ -49,14 +67,14 @@ const CartPage = () => {
                 </span>
                 <p className="text-lg font-bold mt-2">₹{item.price}</p>
                 <p className="text-sm text-gray-500 line-through">
-                  M.R.P: ₹{item.mrp}
+                  M.R.P: ₹{item.price}
                 </p>
               </div>
             </div>
           ))}
           <div className="flex justify-between text-lg font-semibold">
             <p>Subtotal (1 item):</p>
-            <p>₹{cartItems.reduce((total, item) => total + item.price, 0)}</p>
+            {/* <p>₹{cartItems.reduce((total, item) => total + item.price, 0)}</p> */}
           </div>
         </div>
         {/* Order Summary Section */}
@@ -72,7 +90,7 @@ const CartPage = () => {
 
           <div className="text-lg font-semibold flex justify-between mb-4">
             <p>Subtotal (1 item):</p>
-            <p>₹{cartItems.reduce((total, item) => total + item.price, 0)}</p>
+            {/* <p>₹{cartItems.reduce((total, item) => total + item.price, 0)}</p> */}
           </div>
           <div className="flex items-center mb-4">
             <input

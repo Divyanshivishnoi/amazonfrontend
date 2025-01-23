@@ -2,39 +2,62 @@ import pro1 from "../../assests/pro1.jpg";
 import pro2 from "../../assests/pro2.jpg";
 import pro3 from "../../assests/pro3.jpg";
 import pro4 from "../../assests/pro4.jpg";
- const products = [
+const products = [
   {
+    name: "Havells Magnatron 25L",
+    description:
+      "India's First Water Heater with No Heating Element | Minimal Scaling",
+    rating: 4.5,
+    reviews: "465",
+    price: 16150,
+    discount: "-46%",
+    originalPrice: 29990,
+    deliveryDate: "Sunday, January 19",
+    id: 1,
     image: pro1,
-    title: "Havells",
-    description:
-      "Adonia Spin 25 Litre Storage Water Heater(Geyser)| Temperature Sensing LED Knob| Glass Coated Anti Rust Tank|Warranty: 7 Year on Tank| With Shock Safe Plug |Free Installation & Flexi Pipes",
-
-    price: "49.99",
-    discount: "20",
+    quantity: 1,
   },
   {
+    name: "Faber Cyrus 25L",
+    description:
+      "Storage Water Heater | Heating Indicator | 8 Bar Pressure | ABS Body",
+    rating: 4.0,
+    reviews: "9",
+    price: 11990,
+    discount: "-29%",
+    originalPrice: 16990,
+    deliveryDate: "Sunday, January 19",
+    id: 2,
     image: pro2,
-    title: "Havells",
-    description:
-      "Havells Adonia-i 25 Litre Storage Water Heater(Geyser)| Wi-Fi Controlled, Smart & User Friendly | 5 Star Rated| Temp. Sensing LED Indicators| Digital Display| Free Installation & Flexi Pipes (Ivory)",
-    price: "59.99",
-    discount: "15",
+    quantity: 1,
   },
   {
+    name: "Havells Bianca 25L",
+    description: "5 Star Rated | Temp Sensing LED Knob | Anti-Rust Design",
+    rating: 4.3,
+    reviews: "572",
+    price: 13300,
+    discount: "-31%",
+    originalPrice: 19315,
+    deliveryDate: "Sunday, January 19",
+    id: 3,
     image: pro3,
-    title: "AO Smith",
-    description:
-      "Geyser 25 Litre 5 Star Rating (BEE), Vertical Water Heater With Quick Heating | Geyser 25 Ltr For High Rise Building | 7 Year Tank Warranty, 2 Year Comprehensive Warranty | SDS-GREEN-025.",
-    price: "39.99",
-    discount: "10",
+    quantity: 1,
   },
   {
+    name: "Haier Aqualad Pro 15L",
+    description: "Adjustable Storage Water Geyser | Free Installation",
+    rating: 4.6,
+    reviews: "2,321",
+    price: 11950,
+    discount: "-44%",
+    originalPrice: 21400,
+    deliveryDate: "Monday, January 20",
+    id: 4,
     image: pro4,
-    title: "Racold4",
-    description:
-      "Racold Eterno Pro Storage Water Heater (Geyser) 25L with ABS Body – Vertical Geyser for Bathroom, 3 Levels of Safety, Energy Efficient, Titanium Enamelled Coating, Free Standard Installation & Pipes",
-    price: "29.99",
-    discount: "25",
+    quantity: 1,
   },
+ 
 ];
+
 export default products;

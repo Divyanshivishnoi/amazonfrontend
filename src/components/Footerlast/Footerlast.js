@@ -144,9 +144,9 @@ const Footerlast = () => {
             Interest-Based Ads
           </Link>
           
-          <Link to="#" className="hover:underline mx-4">
+          {/* <Link to="#" className="hover:underline mx-4">
             @ 1996-2025,Amazon.com,Inc.or its affiliates
-          </Link>
+          </Link> */}
         </div>
      
 

@@ -9,16 +9,16 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   console.log(password);
-  const [name, setName] = useState("");
-  console.log(name);
+  const [email, setEmail] = useState("");
+  console.log(email);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://amazon-backend-jxcn.onrender.com/login", { name, password })
+      .post("http://localhost:5000/login", { email, password })
       .then((res) => {
         console.log(res);
-        navigate("/profile");
+        navigate("/");
       })
       .catch((err) => {
         const errMsg = err?.response?.data?.message || "Something went wrong";
@@ -46,17 +46,17 @@ const Signup = () => {
           {/* Email Input */}
           <div>
             <label
-              htmlFor="name"
+              htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
               Name or Mobile Phone Number
             </label>
             <input
-              type="name"
-              id="name"
+              type="email"
+              id="email"
               className="w-full px-3 py-2 mt-1 border rounded-md focus:ring focus:ring-yellow-500 focus:outline-none"
-              placeholder="Enter your name"
-              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter your email"
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 

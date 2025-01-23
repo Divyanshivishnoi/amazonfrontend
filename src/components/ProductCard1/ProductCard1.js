@@ -1,23 +1,26 @@
 import React from "react";
 import products from "../ProductData/ProductData";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
 
-const Card = ({ image, title, description, price, discount }) => {
+const Card = ({ product }) => {
+  const dispatch=useDispatch();
   return (
     <div className="bg-white shadow-md rounded-lg p-4">
       <img
-        src={image}
-        alt={title}
+        src={product.image}
+        alt={product.title}
         className="w-full h-48 object-contain rounded-t-lg"
       />
       <div className="mt-3">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-sm text-gray-600">{description}</p>
+        <h3 className="text-lg font-semibold">{product.title}</h3>
+        <p className="text-sm text-gray-600">{product.description}</p>
         <p className="text-md text-gray-800 font-bold mt-2">
-          Price: ${price}{" "}
-          <span className="text-sm text-green-600">({discount}% off)</span>
+          Price: ${product.price}{" "}
+          <span className="text-sm text-green-600">({product.discount}% off)</span>
         </p>
         <div className="mt-3 flex justify-between items-center">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded">
+          <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={()=>dispatch(addToCart(product))} >
             Add to Cart
           </button>
         </div>
@@ -35,11 +38,8 @@ const ProductCard1 = () => {
         {products.map((product, index) => (
           <Card
             key={index}
-            image={product.image}
-            title={product.title}
-            description={product.description}
-            price={product.price}
-            discount={product.discount}
+            
+            product={product}
           />
         ))}
       </div>
