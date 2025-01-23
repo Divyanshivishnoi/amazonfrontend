@@ -8,6 +8,9 @@ import Cart from "./pages/Cart";
 import Profile from "./components/Profile";
 import Signup from "./components/Signup/Signup";
 import LoginPage from "./components/LoginPage/LoginPage";
+import Auth from "./Auth";
+import { useSelector } from "react-redux";
+
 function layout(element) {
   return (
     <>
@@ -18,16 +21,19 @@ function layout(element) {
   );
 }
 function App() {
+  const user = useSelector((state)=>state.auth.user)
   return (
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={layout(<Home />)}>
-          </Route>
-          <Route path="/cart" element={layout(<Cart />)}></Route>
+          <Route path="/" element={layout(<Home />)}></Route>
+
           <Route path="/Login" element={<LoginPage />} />
           <Route path="/Signup" element={<Signup />} />
-          <Route path="/Profile" element={<Profile />} />
+          <Route element={<Auth/>}>
+            <Route path="/Profile" element={layout(<Profile />)} />
+            <Route path="/cart" element={layout(<Cart />)}></Route>
+          </Route>
         </Routes>
         <Footer />
       </Router>

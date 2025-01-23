@@ -1,10 +1,13 @@
 import React from "react";
 import products from "../ProductData/ProductData";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const Card = ({ product }) => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loggedInUser = useSelector((state) => state.user.user);
   return (
     <div className="bg-white shadow-md rounded-lg p-4">
       <img
@@ -17,10 +20,17 @@ const Card = ({ product }) => {
         <p className="text-sm text-gray-600">{product.description}</p>
         <p className="text-md text-gray-800 font-bold mt-2">
           Price: ${product.price}{" "}
-          <span className="text-sm text-green-600">({product.discount}% off)</span>
+          <span className="text-sm text-green-600">
+            ({product.discount}% off)
+          </span>
         </p>
         <div className="mt-3 flex justify-between items-center">
-          <button className="bg-blue-600 text-white px-4 py-2 rounded" onClick={()=>dispatch(addToCart(product))} >
+          <button
+            className="bg-blue-600 text-white px-4 py-2 rounded"
+            onClick={() =>
+              loggedInUser ? dispatch(addToCart(product)) : navigate("/signup")
+            }
+          >
             Add to Cart
           </button>
         </div>
@@ -36,11 +46,7 @@ const ProductCard1 = () => {
       {/* Cards Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {products.map((product, index) => (
-          <Card
-            key={index}
-            
-            product={product}
-          />
+          <Card key={index} product={product} />
         ))}
       </div>
     </div>

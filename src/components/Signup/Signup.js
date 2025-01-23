@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loggedInUser } from "../redux/userSlice";
+import { setUser } from "../../utility/authSlice";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [password, setPassword] = useState("");
   console.log(password);
@@ -18,7 +22,9 @@ const Signup = () => {
       .post("http://localhost:5000/login", { email, password })
       .then((res) => {
         console.log(res);
-        navigate("/");
+        dispatch(loggedInUser(true));
+        dispatch(setUser({ name :email }));
+        navigate("/profile");
       })
       .catch((err) => {
         const errMsg = err?.response?.data?.message || "Something went wrong";

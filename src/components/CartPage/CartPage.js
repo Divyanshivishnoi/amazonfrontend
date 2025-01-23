@@ -1,23 +1,29 @@
-import React from "react";
+import React, { use } from "react";
 import cartItems from "../cartProduct/cartProduct";
 import { useSelector, useDispatch } from "react-redux";
 import { decreaseItem, increaseItem, removeFromCart } from "../redux/cartSlice";
+import { useNavigate } from "react-router-dom";
+
 const CartPage = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   console.log(cartItems);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const loggedInUser = useSelector((state) => state.user.user);
 
   const decrementQuantity = (id) => {
-    dispatch(decreaseItem(id));
+    loggedInUser ? dispatch(decreaseItem(id)) : navigate("/signup");
   };
 
   const incrementQuantity = (item) => {
-    dispatch(increaseItem(item));
+    loggedInUser ? dispatch(increaseItem(item)) : navigate("/signup");
+    
   };
 
-  const removeItemFromCart=(id)=>{
-    dispatch(removeFromCart(id));
-  }
+  const removeItemFromCart = (id) => {
+    loggedInUser ? dispatch(removeFromCart(id)) : navigate("/signup");
+    
+  };
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -56,7 +62,12 @@ const CartPage = () => {
                   </button>
                 </div>
                 <div className="flex items-center gap-4 mt-3 text-sm text-blue-600">
-                  <button onClick={()=>removeItemFromCart(item.id)} className="text-blue text-sm hover:underline" >Delete</button>
+                  <button
+                    onClick={() => removeItemFromCart(item.id)}
+                    className="text-blue text-sm hover:underline"
+                  >
+                    Delete
+                  </button>
                   <button>Save for later</button>
                   <button>See more like this</button>
                 </div>
